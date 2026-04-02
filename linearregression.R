@@ -41,14 +41,17 @@ forward_model <- step(null_model, scope = list(lower = ~ 1, upper = ~ . - 1),
 # Print the summary of the selected model
 summary(forward_model)
 
+attach(data)
 # Fit the initial full model
-initial_model <- lm(Y ~ ., data = data)
+initial_model <- lm(SBP ~ ., data = data)
 
 # Perform stepwise selection
 stepwise_model <- step(initial_model, direction = "both")
 
 # Print the summary of the selected model
 summary(stepwise_model)
+model <- lm(Y ~ age + sex + exercise + smoking + wt + ht , data = data)
+summary(model)
 #==============================
 # 1. Linearity Assumption
 #==============================
