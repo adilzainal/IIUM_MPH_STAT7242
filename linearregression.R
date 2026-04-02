@@ -28,6 +28,27 @@ model <- lm(Y ~ X1 + X2 + X3, data = data)
 summary(model)
 
 confint(model, level = 0.95)
+
+backward_model <- step(model, direction = "backward")
+
+# Fit the initial null model
+null_model <- lm(Y ~ 1, data = data)
+
+# Perform forward selection
+forward_model <- step(null_model, scope = list(lower = ~ 1, upper = ~ . - 1), 
+                      direction = "forward")
+
+# Print the summary of the selected model
+summary(forward_model)
+
+# Fit the initial full model
+initial_model <- lm(Y ~ ., data = data)
+
+# Perform stepwise selection
+stepwise_model <- step(initial_model, direction = "both")
+
+# Print the summary of the selected model
+summary(stepwise_model)
 #==============================
 # 1. Linearity Assumption
 #==============================
