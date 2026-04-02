@@ -1,7 +1,7 @@
 #==============================
 # Install required packages
 #==============================
-setwd("~/Desktop/Medical Statistic/R MPH IIUM/stat7242")
+setwd("~/Desktop/Medical Statistic/R MPH IIUM/stat7242") #change with your cd which contain the dataset
 install.packages(c("car","lmtest","ggplot2","performance"))
 
 library(car)
@@ -27,6 +27,7 @@ model <- lm(Y ~ X1 + X2 + X3, data = data)
 
 summary(model)
 
+confint(model, level = 0.95)
 #==============================
 # 1. Linearity Assumption
 #==============================
